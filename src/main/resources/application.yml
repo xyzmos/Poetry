@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: poetry
+  profiles:
+    active: develop
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/API?zeroDateTimeBehavior=convertToNull
+    username: ZooAPI
+    password: ZooAPI123654@+
+    type: com.alibaba.druid.pool.DruidDataSource
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  check-config-location: true
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql

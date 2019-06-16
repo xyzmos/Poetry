@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nextrt.poetry.mapper.PoetryListMapper">
+  <resultMap id="BaseResultMap" type="com.nextrt.poetry.entity.PoetryList">
+    <id column="poetryTagId" jdbcType="INTEGER" property="poetryTagId" />
+    <id column="poetryId" jdbcType="INTEGER" property="poetryId" />
+    <id column="areaId" jdbcType="INTEGER" property="areaId" />
+    <id column="provinceId" jdbcType="INTEGER" property="provinceId" />
+    <id column="cityId" jdbcType="INTEGER" property="cityId" />
+    <id column="seasonId" jdbcType="INTEGER" property="seasonId" />
+    <id column="timeId" jdbcType="INTEGER" property="timeId" />
+    <id column="weatherId" jdbcType="INTEGER" property="weatherId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    poetryTagId, poetryId, areaId, provinceId, cityId, seasonId, timeId, weatherId
+  </sql>
+  <select id="CountByTagId" parameterType="com.nextrt.poetry.entity.PoetryList" resultType="java.lang.Integer">
+    select count(*) from poetryList
+    <where>
+      <if test='areaId != null'>
+        areaId = #{areaId}
+      </if>
+      <if test='provinceId != null'>
+        and provinceId = #{provinceId}
+      </if>
+      <if test='cityId != null'>
+        and cityId = #{cityId}
+      </if>
+      <if test='seasonId != null'>
+        and seasonId = #{seasonId}
+      </if>
+      <if test='timeId != null'>
+        and timeId = #{timeId}
+      </if>
+      <if test='weatherId != null'>
+        and weatherId = #{weatherId}
+      </if>
+    </where>
+  </select>
+  <select id="selectByCountNum" parameterType="com.nextrt.poetry.entity.PoetryList" resultType="java.lang.Integer">
+    select poetryId from poetryList
+    <where>
+      <if test='areaId != null'>
+        areaId = #{areaId}
+      </if>
+      <if test='provinceId != null'>
+        and provinceId = #{provinceId}
+      </if>
+      <if test='cityId != null'>
+        and cityId = #{cityId}
+      </if>
+      <if test='seasonId != null'>
+        and seasonId = #{seasonId}
+      </if>
+      <if test='timeId != null'>
+        and timeId = #{timeId}
+      </if>
+      <if test='weatherId != null'>
+        and weatherId = #{weatherId}
+      </if>
+    </where> limit #{poetryTagId},1
+  </select>
+
+</mapper>
